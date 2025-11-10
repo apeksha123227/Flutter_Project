@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'CommonFunctions.dart';
+
 class Responsive extends StatelessWidget {
   const Responsive({super.key});
 
@@ -10,12 +12,23 @@ class Responsive extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
-          body: Container(
-                  width: screen_Width*0.5,
-                  height: screen_Height*0.9,
-                  color: Colors.black,
-            child: Center(child: Text("data",style: TextStyle(fontSize: screen_Width * 0.1,color: Colors.white),)),
-                )),
+        appBar: Commonfunctions.CommonAppBar(context, "Responsive Examples"),
+
+        body: Container(
+          width: screen_Width * 0.5,
+          height: screen_Height * 0.9,
+          color: Colors.black,
+          child: Center(
+            child: Text(
+              "data",
+              style: TextStyle(
+                fontSize: screen_Width * 0.1,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

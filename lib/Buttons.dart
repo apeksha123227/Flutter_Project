@@ -1,19 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/CommonFunctions.dart';
 
 class Buttons extends StatelessWidget {
   const Buttons({super.key});
-
-  Color getRandomColor() {
-    Random random = Random();
-    return Color.fromARGB(
-      255,
-      random.nextInt(256), // Red 0-255
-      random.nextInt(256), // Green 0-255
-      random.nextInt(256),
-    ); // Blue 0-255)
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,20 +43,7 @@ class Buttons extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Buttons Examples",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            maxLines: 1,
-          ),
-          backgroundColor: Colors.pink,
-          leading: Icon(Icons.arrow_back, size: 20, color: Colors.white),
-          elevation: 5,
-        ),
+        appBar: Commonfunctions.CommonAppBar(context, "Buttons Example"),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: Column(
@@ -119,7 +97,7 @@ class Buttons extends StatelessWidget {
                                   shape: BoxShape.circle,
                                 ),
                               ),
-                               Container(
+                              Container(
                                 width: 55,
                                 height: 55,
                                 decoration: BoxDecoration(
@@ -127,7 +105,6 @@ class Buttons extends StatelessWidget {
                                   image: DecorationImage(
                                     image: NetworkImage(wallpaper_Image[index]),
                                     fit: BoxFit.cover,
-
                                   ),
                                 ),
                               ),
@@ -220,7 +197,8 @@ class Buttons extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),SizedBox(height: 5),
+              ),
+              SizedBox(height: 5),
             ],
           ),
         ),

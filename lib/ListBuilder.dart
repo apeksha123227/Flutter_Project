@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/CommonFunctions.dart';
 
 class Listbuilder extends StatelessWidget {
   const Listbuilder({super.key});
@@ -116,31 +117,10 @@ class Listbuilder extends StatelessWidget {
       'Rajni',
     ];
 
-    Color getRandomColor()
-    {
-        Random random=Random();
-        return Color.fromARGB( 255,
-        random.nextInt(256), // Red 0-255
-        random.nextInt(256), // Green 0-255
-         random.nextInt(256)); // Blue 0-255)
-    }
-
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "ListBuider Examples",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            maxLines: 1,
-          ),
-          backgroundColor: Colors.pink,
-          leading: Icon(Icons.arrow_back, size: 20, color: Colors.white),
-          elevation: 5,
-        ),
+        appBar: Commonfunctions.CommonAppBar(context, "ListBuider Examples"),
+
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: Column(
@@ -161,7 +141,7 @@ class Listbuilder extends StatelessWidget {
                   itemCount: human_Names.length,
                   itemBuilder: (context, index) {
                     return Card(
-                      color: getRandomColor(),
+                      color: Commonfunctions.getRandomColor(),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                         side: BorderSide(color: Colors.pink, width: 1),
