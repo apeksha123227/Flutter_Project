@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/CommonFunctions.dart';
-import 'package:svg_image/svg_image.dart';
 
-import 'AppColors.dart';
-import 'SignUp.dart';
+import 'SignIn.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -20,7 +17,8 @@ class _SignInState extends State<SignIn> {
 
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
-    bool hidePassword = true;
+    TextEditingController conform_password = TextEditingController();
+    TextEditingController phonenum = TextEditingController();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -33,11 +31,11 @@ class _SignInState extends State<SignIn> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 300),
+                SizedBox(height: 200),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Sign In",
+                    "Sign Up",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
@@ -84,6 +82,34 @@ class _SignInState extends State<SignIn> {
                     SizedBox(height: 12),
 
                     Text(
+                      "Phone no. ",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextField(
+                      controller: phonenum,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      cursorColor: Colors.pink,
+                      decoration: InputDecoration(
+                        hintText: "9864537564",
+                        contentPadding: EdgeInsets.symmetric(vertical: 12),
+                        prefixIcon: Icon(Icons.send_to_mobile_outlined),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.pink),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+
+                    Text(
                       "Password ",
                       style: TextStyle(
                         fontSize: 14,
@@ -101,7 +127,43 @@ class _SignInState extends State<SignIn> {
                       ),
                       cursorColor: Colors.pink,
                       decoration: InputDecoration(
-                        hintText: "Password",
+                        hintText: "Conform Password",
+                        contentPadding: EdgeInsets.symmetric(vertical: 12),
+                        prefixIcon: Icon(Icons.lock_clock),
+                        suffixIcon: Icon(Icons.remove_red_eye_outlined),
+
+                        /*suffix: GestureDetector(onTap: () {
+                                setState(() {
+                                  hidePassword = !hidePassword;
+                                });
+
+                              }),*/
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.pink),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+
+                    Text(
+                      "Password ",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextField(
+                      controller: conform_password,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      cursorColor: Colors.pink,
+                      decoration: InputDecoration(
+                        hintText: "Conform Password",
                         contentPadding: EdgeInsets.symmetric(vertical: 12),
                         prefixIcon: Icon(Icons.lock_clock),
                         suffixIcon: Icon(Icons.remove_red_eye_outlined),
@@ -119,43 +181,6 @@ class _SignInState extends State<SignIn> {
                     ),
 
                     SizedBox(height: 15),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.adjust_rounded,
-                                color: AppColors.lineColor,
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                "Remember me ",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            textAlign: TextAlign.end,
-                            "Forgot password?",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.lineColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
                 SizedBox(height: 50),
@@ -174,7 +199,7 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     child: Text(
-                      "Login ",
+                      "Create Account ",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
@@ -189,7 +214,7 @@ class _SignInState extends State<SignIn> {
                   children: [
                     Text(
                       textAlign: TextAlign.start,
-                      "Don’t have an Account ? ",
+                      "Already have an Account ? ",
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w300,
@@ -197,12 +222,15 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignIn()),
+                        );
                       },
                       child: Text(
                         textAlign: TextAlign.start,
-                        "Sign up ",
+                        "Login ",
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w400,

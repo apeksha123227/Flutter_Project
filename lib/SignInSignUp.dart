@@ -3,6 +3,7 @@ import 'package:flutter_practice/CommonFunctions.dart';
 import 'package:svg_image/svg_image.dart';
 
 import 'SignIn.dart';
+import 'SignUp.dart';
 
 class SignInSignUp extends StatefulWidget {
   const SignInSignUp({super.key});
@@ -29,10 +30,11 @@ class _SignInSignUpState extends State<SignInSignUp> {
               fit: BoxFit.cover,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       textAlign: TextAlign.start,
@@ -55,7 +57,10 @@ class _SignInSignUpState extends State<SignInSignUp> {
                     ),
                     //SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 15,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -68,10 +73,15 @@ class _SignInSignUpState extends State<SignInSignUp> {
                               color: Colors.black,
                             ),
                           ),
-                          SizedBox(width: 5,),
+                          SizedBox(width: 5),
                           InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>SignIn()));
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SignUp(),
+                                ),
+                              );
                             },
                             child: SvgImage(
                               "assets/images/nextpage_icon.svg",
