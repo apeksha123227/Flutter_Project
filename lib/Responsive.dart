@@ -10,21 +10,19 @@ class Responsive extends StatelessWidget {
     double screen_Width = MediaQuery.of(context).size.width;
     double screen_Height = MediaQuery.of(context).size.height;
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: Commonfunctions.CommonAppBar(context, "Responsive Examples"),
+    return Scaffold(
+      appBar: Commonfunctions.CommonAppBar(context, "Responsive Examples"),
 
-        body: Container(
-          width: screen_Width * 0.5,
-          height: screen_Height * 0.9,
-          color: Colors.black,
-          child: Center(
-            child: Text(
-              "data",
-              style: TextStyle(
-                fontSize: screen_Width * 0.1,
-                color: Colors.white,
-              ),
+      body: Container(
+        width: screen_Width * 0.5,
+        height: screen_Height * 0.9,
+        color: Colors.black,
+        child: Center(
+          child: Text(
+            "data",
+            style: TextStyle(
+              fontSize: screen_Width * 0.1,
+              color: Colors.white,
             ),
           ),
         ),

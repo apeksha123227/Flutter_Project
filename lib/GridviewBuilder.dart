@@ -31,51 +31,49 @@ class GridviewBuilder extends StatelessWidget {
       'https://images.pexels.com/photos/34950/pexels-photo.jpg',
     ];
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: Commonfunctions.CommonAppBar(context, "Gridview Builder Examples"),
+    return Scaffold(
+      appBar: Commonfunctions.CommonAppBar(context, "Gridview Builder Examples"),
 
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: Column(
-            children: [
-              Center(
-                child: Text(
-                  "Wallpaper Images",
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                "Wallpaper Images",
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
-              Expanded(
-                child: GridView.builder(
-                  itemCount: wallpaper_Image.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 5,
-                    crossAxisSpacing: 5,
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: GridView.builder(
+                itemCount: wallpaper_Image.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
 
-                  ),
-                  itemBuilder: (context, index) {
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Commonfunctions.getRandomColor()
-                            , width: 5),
-                        //  borderRadius: BorderRadius.circular(30)
-                      ),
-                      child: Image(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(wallpaper_Image[index]),
-                      ),
-                    );
-                  },
                 ),
+                itemBuilder: (context, index) {
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Commonfunctions.getRandomColor()
+                          , width: 5),
+                      //  borderRadius: BorderRadius.circular(30)
+                    ),
+                    child: Image(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(wallpaper_Image[index]),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

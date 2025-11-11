@@ -25,6 +25,9 @@ class Commonfunctions {
         maxLines: 1,
       ),
       backgroundColor: Colors.pink,
+     // automaticallyImplyLeading: true,
+
+      // automaticallyImplyLeading=true,
       leading: InkWell(
         onTap: () {
           Navigator.pop(context);

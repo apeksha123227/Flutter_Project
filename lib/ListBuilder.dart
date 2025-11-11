@@ -117,47 +117,45 @@ class Listbuilder extends StatelessWidget {
       'Rajni',
     ];
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: Commonfunctions.CommonAppBar(context, "ListBuider Examples"),
+    return  Scaffold(
+      appBar: Commonfunctions.CommonAppBar(context, "ListBuider Examples"),
 
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: Column(
-            children: [
-              Center(
-                child: Text(
-                  "Human names",
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                "Human names",
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: human_Names.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      color: Commonfunctions.getRandomColor(),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        side: BorderSide(color: Colors.pink, width: 1),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: human_Names.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: Commonfunctions.getRandomColor(),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      side: BorderSide(color: Colors.pink, width: 1),
+                    ),
+                    child: ListTile(
+                      leading: Icon(Icons.person, color: Colors.white),
+                      title: Text(human_Names[index],
+                        style: TextStyle(fontSize: 15, color: Colors.white),
                       ),
-                      child: ListTile(
-                        leading: Icon(Icons.person, color: Colors.white),
-                        title: Text(human_Names[index],
-                          style: TextStyle(fontSize: 15, color: Colors.white),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
