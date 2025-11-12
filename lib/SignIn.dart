@@ -33,11 +33,14 @@ class _SignInState extends State<SignIn> {
       strPassword = password.text;
 
       if (strPassword == strGetPassword) {
-        Navigator.pushNamed(
+        Navigator.pushNamed(context, '/display', arguments: "Welcome");
+        ScaffoldMessenger.of(
           context,
-          '/display',
-          arguments: "Welcome"
-        );
+        ).showSnackBar(SnackBar(content: Text("Login Success")));
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Something went wrong")));
       }
     }
 

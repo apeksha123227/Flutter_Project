@@ -14,8 +14,14 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    final screenHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
@@ -30,9 +36,17 @@ class _SignUpState extends State<SignUp> {
 
       setState(() {
         if (strPassword.isEmpty | strConform_Password.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Password & Conform Password are required")),
+          );
         } else if (strPassword == strConform_Password) {
           Navigator.pushNamed(context, '/Password', arguments: strPassword);
-        } else {}
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Account Created Successfully")));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Something went wrong")));
+        }
       });
     }
 
