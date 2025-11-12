@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:svg_image/svg_image.dart';
 
 import 'SignIn.dart';
 
@@ -20,6 +22,20 @@ class _SignUpState extends State<SignUp> {
     TextEditingController conform_password = TextEditingController();
     TextEditingController phonenum = TextEditingController();
 
+    String strPassword, strConform_Password;
+
+    void checkPassword() {
+      strPassword = password.text;
+      strConform_Password = conform_password.text;
+
+      setState(() {
+        if (strPassword.isEmpty | strConform_Password.isEmpty) {
+        } else if (strPassword == strConform_Password) {
+          Navigator.pushNamed(context, '/Password', arguments: strPassword);
+        } else {}
+      });
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -31,7 +47,14 @@ class _SignUpState extends State<SignUp> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 200),
+                SizedBox(
+                  height: 200,
+                  /*  child: SvgImage(
+                    'assets/images/background.svg',
+                    type: PathType.assets,
+                    fit: BoxFit.cover,
+                  ),*/
+                ),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -91,6 +114,11 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextField(
                       controller: phonenum,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        // FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(10),
+                      ],
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 14,
@@ -100,6 +128,7 @@ class _SignUpState extends State<SignUp> {
                       cursorColor: Colors.pink,
                       decoration: InputDecoration(
                         hintText: "9864537564",
+
                         contentPadding: EdgeInsets.symmetric(vertical: 12),
                         prefixIcon: Icon(Icons.send_to_mobile_outlined),
                         enabledBorder: UnderlineInputBorder(
@@ -119,7 +148,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextField(
                       controller: password,
-                      maxLines: 1,
+                      inputFormatters: [LengthLimitingTextInputFormatter(8)],
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w300,
@@ -127,7 +156,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       cursorColor: Colors.pink,
                       decoration: InputDecoration(
-                        hintText: "Conform Password",
+                        hintText: "Password",
                         contentPadding: EdgeInsets.symmetric(vertical: 12),
                         prefixIcon: Icon(Icons.lock_clock),
                         suffixIcon: Icon(Icons.remove_red_eye_outlined),
@@ -146,7 +175,7 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: 12),
 
                     Text(
-                      "Password ",
+                      "Conform Password ",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
@@ -155,6 +184,8 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextField(
                       controller: conform_password,
+                      inputFormatters: [LengthLimitingTextInputFormatter(8)],
+
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 14,
@@ -186,8 +217,11 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(height: 50),
                 SizedBox(
                   width: double.infinity,
+
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      checkPassword();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink,
                       padding: EdgeInsets.symmetric(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_practice/CommonFunctions.dart';
+import 'package:flutter_practice/DisplayScren.dart';
 import 'package:svg_image/svg_image.dart';
 
 import 'AppColors.dart';
@@ -7,6 +9,8 @@ import 'SignUp.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
+
+  // const SignIn({super.key,required this.password});
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -21,6 +25,21 @@ class _SignInState extends State<SignIn> {
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
     bool hidePassword = true;
+
+    String strGetPassword =
+        ModalRoute.of(context)!.settings.arguments as String;
+    String strPassword;
+    void login() {
+      strPassword = password.text;
+
+      if (strPassword == strGetPassword) {
+        Navigator.pushNamed(
+          context,
+          '/display',
+          arguments: "Welcome"
+        );
+      }
+    }
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -93,6 +112,8 @@ class _SignInState extends State<SignIn> {
                     ),
                     TextField(
                       controller: password,
+                      inputFormatters: [LengthLimitingTextInputFormatter(8)],
+
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 14,
@@ -162,7 +183,9 @@ class _SignInState extends State<SignIn> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      login();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink,
                       padding: EdgeInsets.symmetric(
@@ -197,8 +220,11 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUp()),
+                        );
                       },
                       child: Text(
                         textAlign: TextAlign.start,
