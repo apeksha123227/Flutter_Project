@@ -18,6 +18,12 @@ class _SetstateexampleState extends State<SetStateExample> {
     List<String> human_Names = ['Aarav'];
 
 
+    void addItems(){
+      setState(() {
+        wallpaper_Image.add("${wallpaper_Image.length + 1}");
+      });
+    }
+
     return Scaffold(
       appBar: Commonfunctions.CommonAppBar(context, "SetState Examples"),
 
@@ -31,44 +37,49 @@ class _SetstateexampleState extends State<SetStateExample> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(3),
-                  child: Stack(
-                    alignment: Alignment.center,
+                  child: Column(
                     children: [
-                      Container(
-                        width: 70,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: const LinearGradient(
-                            colors: [
-                              Color(0xFFF58529),
-                              Color(0xFFDD2A7B),
-                              Color(0xFF8134AF),
-                              Color(0xFF515BD4),
-                            ],
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 70,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color(0xFFF58529),
+                                  Color(0xFFDD2A7B),
+                                  Color(0xFF8134AF),
+                                  Color(0xFF515BD4),
+                                ],
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Container(
-                        width: 66,
-                        height: 66,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      Container(
-                        width: 55,
-                        height: 55,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage(wallpaper_Image[index]),
-                            fit: BoxFit.cover,
+                          Container(
+                            width: 66,
+                            height: 66,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                            ),
                           ),
-                        ),
+                          Container(
+                            width: 55,
+                            height: 55,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: NetworkImage(wallpaper_Image[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+
+                        ],
                       ),
                       SizedBox(height: 5),
                       Text(
@@ -77,18 +88,28 @@ class _SetstateexampleState extends State<SetStateExample> {
                       ),
                     ],
                   ),
+
                 );
               },
             ),
           ),
 
-          FloatingActionButton(
-            onPressed: () {
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Container(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                onPressed:(){
+                  setState(() {
+                   // wallpaper_Image.add("${wallpaper_Image.length + 1}");
+                    human_Names.add("${human_Names.length + 1}");
 
-              /* setState(() {
-                });*/
-            },
-            child: Icon(Icons.add, color: Colors.pink, size: 40),
+                  });
+
+                },
+                child: Icon(Icons.add, color: Colors.pink, size: 40),
+              ),
+            ),
           ),
 
           SizedBox(height: 20),
