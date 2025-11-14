@@ -181,13 +181,13 @@ class _SignUpState extends State<SignUp> {
                                 });
 
                               }),*/
+
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.pink),
                         ),
                       ),
                     ),
                     SizedBox(height: 12),
-
                     Text(
                       "Conform Password ",
                       style: TextStyle(

@@ -12,15 +12,16 @@ class SetStateExample extends StatefulWidget {
 class _SetstateexampleState extends State<SetStateExample> {
   @override
   Widget build(BuildContext context) {
+
     List<String> wallpaper_Image = [
       'https://images.unsplash.com/photo-1519125323398-675f0ddb6308',
     ];
     List<String> human_Names = ['Aarav'];
 
-
-    void addItems(){
+    void addItems() {
       setState(() {
-        wallpaper_Image.add("${wallpaper_Image.length + 1}");
+        wallpaper_Image.add(' ${wallpaper_Image.length + 1}');
+        human_Names.add(' ${human_Names.length + 1}');
       });
     }
 
@@ -99,14 +100,7 @@ class _SetstateexampleState extends State<SetStateExample> {
             child: Container(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
-                onPressed:(){
-                  setState(() {
-                   // wallpaper_Image.add("${wallpaper_Image.length + 1}");
-                    human_Names.add("${human_Names.length + 1}");
-
-                  });
-
-                },
+                onPressed:addItems,
                 child: Icon(Icons.add, color: Colors.pink, size: 40),
               ),
             ),
