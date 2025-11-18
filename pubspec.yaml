@@ -70,8 +70,7 @@ flutter:
 
   assets:
     - assets/images/pavlova-diagram.png
-    - assets/images/background_signInSignUp.svg
-    - assets/images/background.svg
+    - assets/images/back.png
     - assets/images/nextpage_icon.svg
 
 
