@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/CommonFunctions.dart';
+
+import '../../Common Functions/Common_Functions.dart';
 
 class Listbuilder extends StatelessWidget {
   const Listbuilder({super.key});
@@ -118,7 +119,7 @@ class Listbuilder extends StatelessWidget {
     ];
 
     return  Scaffold(
-      appBar: Commonfunctions.CommonAppBar(context, "ListBuider Examples"),
+      appBar: Common_Functions.GetAppBar(context, "ListBuider Examples"),
 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
@@ -140,7 +141,7 @@ class Listbuilder extends StatelessWidget {
                 itemCount: human_Names.length,
                 itemBuilder: (context, index) {
                   return Card(
-                    color: Commonfunctions.getRandomColor(),
+                    color: Common_Functions.getRandomColor(),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                       side: BorderSide(color: Colors.pink, width: 1),

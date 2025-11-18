@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/CommonFunctions.dart';
+
+import '../../Common Functions/Common_Functions.dart';
 
 class Buttons extends StatelessWidget {
   const Buttons({super.key});
@@ -42,7 +43,7 @@ class Buttons extends StatelessWidget {
     ];
 
     return  Scaffold(
-      appBar: Commonfunctions.CommonAppBar(context, "Buttons Example"),
+      appBar: Common_Functions.GetAppBar(context, "Buttons Example"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(

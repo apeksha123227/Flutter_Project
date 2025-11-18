@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'CommonFunctions.dart';
+import '../../Common Functions/Common_Functions.dart';
 
 class Responsive extends StatelessWidget {
   const Responsive({super.key});
@@ -11,7 +11,7 @@ class Responsive extends StatelessWidget {
     double screen_Height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: Commonfunctions.CommonAppBar(context, "Responsive Examples"),
+      appBar: Common_Functions.GetAppBar(context, "Responsive Examples"),
 
       body: Container(
         width: screen_Width * 0.5,

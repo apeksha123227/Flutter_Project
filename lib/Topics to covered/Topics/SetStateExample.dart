@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'CommonFunctions.dart';
+import '../../Common Functions/Common_Functions.dart';
 
 class SetStateExample extends StatefulWidget {
   const SetStateExample({super.key});
@@ -28,7 +28,7 @@ class _SetstateexampleState extends State<SetStateExample> {
 
 
     return Scaffold(
-      appBar: Commonfunctions.CommonAppBar(context, "SetState Examples"),
+      appBar: Common_Functions.GetAppBar(context, "SetState Examples"),
 
       body: Column(
         children: [

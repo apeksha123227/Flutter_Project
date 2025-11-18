@@ -1,18 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/CommonFunctions.dart';
-import 'package:flutter_practice/SignInSignUp.dart';
-import 'package:flutter_practice/LoginScreen.dart';
-import 'package:flutter_practice/Responsive.dart';
-import 'package:flutter_practice/StaggeredGridviewBuilder.dart';
+import 'package:flutter_practice/Projects/Projects_Homescreen.dart';
 
-import 'Buttons.dart';
-import 'GridviewBuilder.dart';
-import 'Layoutbuilder.dart';
-import 'ListBuilder.dart';
-import 'NavigatorExample.dart';
-import 'SetStateExample.dart';
+import 'package:flutter_practice/Tasks/Tasks_HomeScreen.dart';
+import 'package:flutter_practice/Topics%20to%20covered/Topics_HomeScreen.dart';
+
+import 'Common Functions/Common_Functions.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,7 +13,80 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screen_Width = MediaQuery.of(context).size.width;
     final screen_Height = MediaQuery.of(context).size.height;
-    final topics = [
+    final topics = ['Topics to covered', 'Tasks', 'Projects'];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Topics to Cover",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          maxLines: 1,
+        ),
+        backgroundColor: Colors.pink,
+        leading: Icon(Icons.drag_handle, size: 20, color: Colors.white),
+        elevation: 5,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+
+        child: Container(
+          width: screen_Width,
+          height: screen_Height,
+          child: ListView.builder(
+            itemCount: topics.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  if (index == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Topics_HomeScreen(),
+                      ),
+                    );
+                  } else if (index == 1) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Tasks_HomeScreen(),
+                      ),
+                    );
+                  } else if (index == 2) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Projects_Homescreen(),
+                      ),
+                    );
+                  }
+                },
+                child: Card(
+                  color: Common_Functions.getRandomColor(),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    side: BorderSide(color: Colors.pink, width: 1),
+                  ),
+                  child: ListTile(
+                    title: Center(
+                      child: Text(
+                        topics[index],
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+
+    /* final topics = [
       'Buttons',
       'Gridview',
       'SignInSignUp',
@@ -125,7 +190,7 @@ class HomeScreen extends StatelessWidget {
                   }
                 },
                 child: Card(
-                  color: Commonfunctions.getRandomColor(),
+                  color: Common_Functions.getRandomColor(),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                     side: BorderSide(color: Colors.pink, width: 1),
@@ -144,6 +209,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    );*/
   }
 }

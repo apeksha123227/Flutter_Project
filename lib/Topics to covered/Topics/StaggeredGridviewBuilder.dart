@@ -1,10 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/CommonFunctions.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class GridviewBuilder extends StatelessWidget {
-  const GridviewBuilder({super.key});
+import '../../Common Functions/Common_Functions.dart';
+
+class StaggeredGridviewBuilder extends StatelessWidget {
+  const StaggeredGridviewBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,10 @@ class GridviewBuilder extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: Commonfunctions.CommonAppBar(context, "Gridview Builder Examples"),
+      appBar: Common_Functions.GetAppBar(
+        context,
+        "Staggered Gridview Builder Examples",
+      ),
 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
@@ -50,19 +55,19 @@ class GridviewBuilder extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: GridView.builder(
+              child: MasonryGridView.count(
+                crossAxisCount: 3,
+                // Number of columns
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
                 itemCount: wallpaper_Image.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-
-                ),
                 itemBuilder: (context, index) {
                   return Card(
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Commonfunctions.getRandomColor()
-                          , width: 5),
+                      side: BorderSide(
+                        color: Common_Functions.getRandomColor(),
+                        width: 5,
+                      ),
                       //  borderRadius: BorderRadius.circular(30)
                     ),
                     child: Image(

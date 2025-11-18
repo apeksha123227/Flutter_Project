@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/CommonFunctions.dart';
 import 'package:svg_image/svg_image.dart';
 
 import 'SignIn.dart';
@@ -25,7 +24,7 @@ class _SignInSignUpState extends State<SignInSignUp> {
         child: Column(
           children: [
             SvgImage(
-              'assets/images/background.svg',
+              'assets/images/back.png',
               type: PathType.assets,
               fit: BoxFit.cover,
             ),

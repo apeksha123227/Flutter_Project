@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 
-import 'AppColors.dart';
+import '../../Common Functions/AppColors.dart';
 import 'SignUp.dart';
 
 class SignIn extends StatefulWidget {

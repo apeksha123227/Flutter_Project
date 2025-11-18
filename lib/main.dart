@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/SignIn.dart';
 
-import 'DisplayScren.dart';
+import 'Tasks/SignIn_Signup/DisplayScren.dart';
 import 'HomeScreen.dart';
+import 'Tasks/SignIn_Signup/SignIn.dart';
 
 void main() {
   runApp(const Myapp_31_Oct_Task());

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'CommonFunctions.dart';
-import 'DisplayScren.dart';
-import 'SignInSignUp.dart';
+import '../../Common Functions/Common_Functions.dart';
+import '../../Tasks/SignIn_Signup/DisplayScren.dart';
+import '../../Tasks/SignIn_Signup/SignInSignUp.dart';
 
 class NavigatorExample extends StatelessWidget {
   const NavigatorExample({super.key});
@@ -10,7 +10,7 @@ class NavigatorExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Commonfunctions.CommonAppBar(context, "Navigator Example"),
+      appBar: Common_Functions.GetAppBar(context, "Navigator Example"),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

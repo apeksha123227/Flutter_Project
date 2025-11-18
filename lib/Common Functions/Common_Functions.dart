@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class Commonfunctions {
+class Common_Functions {
+
   static Color getRandomColor() {
     Random random = Random();
     return Color.fromARGB(
@@ -13,7 +14,7 @@ class Commonfunctions {
     ); // Blue 0-255)
   }
 
-  static CommonAppBar(BuildContext context, String title) {
+  static GetAppBar(BuildContext context, String title) {
     return AppBar(
       title: Text(
         title,
