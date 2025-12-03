@@ -3,6 +3,7 @@ import 'package:flutter_practice/Tasks/Login/LoginScreen.dart';
 import 'package:flutter_practice/Tasks/SignIn_Signup/SignInSignUp.dart';
 
 import '../Common Functions/Common_Functions.dart';
+import 'To Do/To_Do_Screen.dart';
 
 
 class Tasks_HomeScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _Tasks_HomeScreenState extends State<Tasks_HomeScreen> {
     final screen_Width = MediaQuery.of(context).size.width;
     final screen_Height = MediaQuery.of(context).size.height;
 
-    final topics = ['Login', 'SignIn SignUp'];
+    final topics = ['Login', 'SignIn SignUp', 'To Do',];
 
     return Scaffold(
       appBar: Common_Functions.GetAppBar(context, "Tasks HomeScreen"),
@@ -45,6 +46,12 @@ class _Tasks_HomeScreenState extends State<Tasks_HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => SignInSignUp(),
                       ),
+                    );
+                  }
+                  else if (index == 2) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => To_Do_Screen()),
                     );
                   }
                 },
