@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'Tasks/SignIn_Signup/DisplayScren.dart';
 import 'HomeScreen.dart';
@@ -14,7 +15,7 @@ class Myapp_31_Oct_Task extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(),
       routes: {

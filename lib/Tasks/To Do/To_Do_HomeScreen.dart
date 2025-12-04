@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/Tasks/Login/LoginScreen.dart';
-import 'package:flutter_practice/Tasks/SignIn_Signup/SignInSignUp.dart';
-import 'package:flutter_practice/Tasks/To%20Do/To_Do_HomeScreen.dart';
 
-import '../Common Functions/Common_Functions.dart';
-import 'To Do/Using SetState/To_Do_Screen_SetState.dart';
+import '../../Common Functions/Common_Functions.dart';
+import 'Using GetX/To_Do_Screen_GetX.dart';
+import 'Using SetState/To_Do_Screen_SetState.dart';
 
-
-class Tasks_HomeScreen extends StatefulWidget {
-  const Tasks_HomeScreen({super.key});
+class To_Do_HomeScreen extends StatefulWidget {
+  const To_Do_HomeScreen({super.key});
 
   @override
-  State<Tasks_HomeScreen> createState() => _Tasks_HomeScreenState();
+  State<To_Do_HomeScreen> createState() => _To_Do_HomeScreenState();
 }
 
-class _Tasks_HomeScreenState extends State<Tasks_HomeScreen> {
+class _To_Do_HomeScreenState extends State<To_Do_HomeScreen> {
   @override
+
   Widget build(BuildContext context) {
+
+
     final screen_Width = MediaQuery.of(context).size.width;
     final screen_Height = MediaQuery.of(context).size.height;
 
-    final topics = ['Login', 'SignIn SignUp', 'To Do',];
+    final topics = ['Using SetState', 'Using getX'];
 
     return Scaffold(
-      appBar: Common_Functions.GetAppBar(context, "Tasks HomeScreen"),
+      appBar: Common_Functions.GetAppBar(context, "To Do HomeScreen"),
+
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
 
@@ -38,21 +39,15 @@ class _Tasks_HomeScreenState extends State<Tasks_HomeScreen> {
                   if (index == 0) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Loginscreen()),
+                      MaterialPageRoute(builder: (context) => To_Do_Screen_SetState()),
                     );
                   }
                   else if (index == 1) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignInSignUp(),
+                        builder: (context) => To_Do_Screen_GetX(),
                       ),
-                    );
-                  }
-                  else if (index == 2) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => To_Do_HomeScreen()),
                     );
                   }
                 },

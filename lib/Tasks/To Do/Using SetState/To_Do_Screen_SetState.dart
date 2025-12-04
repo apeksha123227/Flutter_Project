@@ -1,32 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/Common%20Functions/Common_Functions.dart';
+import 'package:get/get.dart';
 
-class To_Do_Screen extends StatefulWidget {
-  const To_Do_Screen({super.key});
+class To_Do_Screen_SetState extends StatefulWidget {
+  const To_Do_Screen_SetState({super.key});
 
   @override
-  State<To_Do_Screen> createState() => _To_Do_ScreenState();
+  State<To_Do_Screen_SetState> createState() => _To_Do_ScreenState();
 }
 
-class _To_Do_ScreenState extends State<To_Do_Screen> {
-  List<String> todo_items = [];
-  TextEditingController task_Controller = TextEditingController();
+class _To_Do_ScreenState extends State<To_Do_Screen_SetState> {
+  RxList todo_items = [].obs;
+  TextEditingController task_Controller = Get.put(TextEditingController());
 
-  TextEditingController date_Controller = TextEditingController();
-  TextEditingController time_Controller = TextEditingController();
+  //Date And Time
+
+  String currentDate = "";
+  String currentTime = "";
+
+  void getDateTime() {
+    DateTime now = DateTime.now();
+
+    setState(() {
+      currentDate = "${now.day}-${now.month}-${now.year}";
+      currentTime = "${now.hour}:${now.minute}";
+    });
+  }
+
+  //Add Item
 
   void getBottomSheet_AddItem() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 20,
+            right: 20,
+            top: 20,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -99,7 +117,6 @@ class _To_Do_ScreenState extends State<To_Do_Screen> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     final screen_width = MediaQuery.of(context).size.width;
@@ -110,6 +127,7 @@ class _To_Do_ScreenState extends State<To_Do_Screen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           getBottomSheet_AddItem();
+          getDateTime();
         },
         child: Icon(Icons.add_circle, size: 40, color: Colors.pink),
       ),
@@ -144,11 +162,26 @@ class _To_Do_ScreenState extends State<To_Do_Screen> {
                           children: [
                             Container(
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     todo_items[index],
                                     style: TextStyle(
                                       fontSize: 20,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Date ${currentDate}",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black26,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Time ${currentTime}",
+                                    style: TextStyle(
+                                      fontSize: 15,
                                       color: Colors.black26,
                                     ),
                                   ),
@@ -166,17 +199,31 @@ class _To_Do_ScreenState extends State<To_Do_Screen> {
                                           context: context,
                                           backgroundColor: Colors.white,
                                           isScrollControlled: true,
-                                          shape:  RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.vertical(
+                                              top: Radius.circular(20),
+                                            ),
                                           ),
                                           builder: (context) {
-                                            TextEditingController editingController=TextEditingController(text:todo_items[index]);
+                                            TextEditingController
+                                            editingController =
+                                                TextEditingController(
+                                                  text: todo_items[index],
+                                                );
 
                                             return Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                                              padding: EdgeInsets.only(
+                                                bottom: MediaQuery.of(
+                                                  context,
+                                                ).viewInsets.bottom,
+                                                left: 20,
+                                                right: 20,
+                                                top: 20,
+                                              ),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
                                                 children: [
                                                   Center(
                                                     child: Text(
@@ -184,17 +231,21 @@ class _To_Do_ScreenState extends State<To_Do_Screen> {
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 30,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                   ),
                                                   SizedBox(height: 10),
                                                   Row(
-                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
                                                     children: [
                                                       InkWell(
                                                         onTap: () {
-                                                          Navigator.pop(context);
+                                                          Navigator.pop(
+                                                            context,
+                                                          );
                                                         },
                                                         child: Icon(
                                                           Icons.cancel_outlined,
@@ -207,26 +258,43 @@ class _To_Do_ScreenState extends State<To_Do_Screen> {
                                                   SizedBox(height: 30),
                                                   TextField(
                                                     maxLines: 1,
-                                                    controller: editingController,
+                                                    controller:
+                                                        editingController,
                                                     textAlign: TextAlign.start,
                                                     cursorColor: Colors.pink,
                                                     decoration: InputDecoration(
-                                                      hintText: task_Controller.text,
+                                                      hintText:
+                                                          task_Controller.text,
                                                       border: OutlineInputBorder(
-                                                        borderRadius: BorderRadius.circular(10),
-                                                        borderSide: BorderSide(color: Colors.black, width: 1),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              10,
+                                                            ),
+                                                        borderSide: BorderSide(
+                                                          color: Colors.black,
+                                                          width: 1,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                   SizedBox(height: 30),
                                                   ElevatedButton(
-                                                    style: ElevatedButton.styleFrom(backgroundColor: Colors.pink),
+                                                    style:
+                                                        ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Colors.pink,
+                                                        ),
                                                     onPressed: () {
-                                                      if (editingController.text.isNotEmpty) {
+                                                      if (editingController
+                                                          .text
+                                                          .isNotEmpty) {
                                                         setState(() {
-                                                         todo_items[index]=editingController.text;
+                                                          todo_items[index] =
+                                                              editingController
+                                                                  .text;
                                                         });
-                                                        editingController.clear();
+                                                        editingController
+                                                            .clear();
                                                         Navigator.pop(context);
                                                       }
                                                     },
@@ -235,7 +303,8 @@ class _To_Do_ScreenState extends State<To_Do_Screen> {
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 20,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                   ),
