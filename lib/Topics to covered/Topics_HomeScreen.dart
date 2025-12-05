@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/Tasks/To%20Do/Using%20GetX/To_Do_Screen_GetX.dart';
 
 import '../Common Functions/Common_Functions.dart';
 import 'Topics/Buttons.dart';
@@ -15,13 +16,10 @@ import 'package:flutter_practice/Topics%20to%20covered/Topics/StaggeredGridviewB
 class Topics_HomeScreen extends StatelessWidget {
   const Topics_HomeScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-
     final screen_Width = MediaQuery.of(context).size.width;
     final screen_Height = MediaQuery.of(context).size.height;
-
 
     final topics = [
       'Buttons',
@@ -32,10 +30,10 @@ class Topics_HomeScreen extends StatelessWidget {
       'Staggered GridView',
       'Navigator',
       'SetState',
+      'GetX',
     ];
 
     return Scaffold(
-
       appBar: Common_Functions.GetAppBar(context, "Topics HomeScreen"),
 
       body: Padding(
@@ -64,16 +62,12 @@ class Topics_HomeScreen extends StatelessWidget {
                   } else if (index == 2) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => Layoutbuilder(),
-                      ),
+                      MaterialPageRoute(builder: (context) => Layoutbuilder()),
                     );
                   } else if (index == 3) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => Listbuilder(),
-                      ),
+                      MaterialPageRoute(builder: (context) => Listbuilder()),
                     );
                   } else if (index == 4) {
                     Navigator.push(
@@ -83,18 +77,29 @@ class Topics_HomeScreen extends StatelessWidget {
                   } else if (index == 5) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => StaggeredGridviewBuilder()),
+                      MaterialPageRoute(
+                        builder: (context) => StaggeredGridviewBuilder(),
+                      ),
                     );
                   } else if (index == 6) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => NavigatorExample()),
+                      MaterialPageRoute(
+                        builder: (context) => NavigatorExample(),
+                      ),
                     );
                   } else if (index == 7) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => SetStateExample(),
+                      ),
+                    );
+                  } else if (index == 8) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => To_Do_Screen_GetX(),
                       ),
                     );
                   }

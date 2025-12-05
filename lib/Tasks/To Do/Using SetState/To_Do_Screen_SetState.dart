@@ -10,8 +10,8 @@ class To_Do_Screen_SetState extends StatefulWidget {
 }
 
 class _To_Do_ScreenState extends State<To_Do_Screen_SetState> {
-  RxList todo_items = [].obs;
-  TextEditingController task_Controller = Get.put(TextEditingController());
+  List<String> todo_items = [];
+  TextEditingController task_Controller = TextEditingController();
 
   //Date And Time
 
@@ -150,194 +150,213 @@ class _To_Do_ScreenState extends State<To_Do_Screen_SetState> {
                 child: ListView.builder(
                   itemCount: todo_items.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    todo_items[index],
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
+                    final item = todo_items[index];
+                    return Dismissible(
+                      key: ValueKey(item),
+                      direction: DismissDirection.horizontal,
+                      onDismissed: (direction) {
+                        setState(() {
+                          todo_items.removeAt(index);
+                        });
+                      },
+                      child: Card(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Row(
+                            children: [
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      todo_items[index],
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Date ${currentDate}",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.black26,
+                                    Text(
+                                      "Date ${currentDate}",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black26,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Time ${currentTime}",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.black26,
+                                    Text(
+                                      "Time ${currentTime}",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black26,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          backgroundColor: Colors.white,
-                                          isScrollControlled: true,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.vertical(
-                                              top: Radius.circular(20),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            backgroundColor: Colors.white,
+                                            isScrollControlled: true,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.vertical(
+                                                    top: Radius.circular(20),
+                                                  ),
                                             ),
-                                          ),
-                                          builder: (context) {
-                                            TextEditingController
-                                            editingController =
-                                                TextEditingController(
-                                                  text: todo_items[index],
-                                                );
+                                            builder: (context) {
+                                              TextEditingController
+                                              editingController =
+                                                  TextEditingController(
+                                                    text: todo_items[index],
+                                                  );
 
-                                            return Padding(
-                                              padding: EdgeInsets.only(
-                                                bottom: MediaQuery.of(
-                                                  context,
-                                                ).viewInsets.bottom,
-                                                left: 20,
-                                                right: 20,
-                                                top: 20,
-                                              ),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Center(
-                                                    child: Text(
-                                                      "Update Your Tasks",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 30,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                              return Padding(
+                                                padding: EdgeInsets.only(
+                                                  bottom: MediaQuery.of(
+                                                    context,
+                                                  ).viewInsets.bottom,
+                                                  left: 20,
+                                                  right: 20,
+                                                  top: 20,
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Center(
+                                                      child: Text(
+                                                        "Update Your Tasks",
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  SizedBox(height: 10),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      InkWell(
-                                                        onTap: () {
+                                                    SizedBox(height: 10),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                              context,
+                                                            );
+                                                          },
+                                                          child: Icon(
+                                                            Icons
+                                                                .cancel_outlined,
+                                                            color: Colors.pink,
+                                                            size: 30,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(height: 30),
+                                                    TextField(
+                                                      maxLines: 1,
+                                                      controller:
+                                                          editingController,
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      cursorColor: Colors.pink,
+                                                      decoration: InputDecoration(
+                                                        hintText:
+                                                            task_Controller
+                                                                .text,
+                                                        border: OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                10,
+                                                              ),
+                                                          borderSide:
+                                                              BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                                width: 1,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 30),
+                                                    ElevatedButton(
+                                                      style:
+                                                          ElevatedButton.styleFrom(
+                                                            backgroundColor:
+                                                                Colors.pink,
+                                                          ),
+                                                      onPressed: () {
+                                                        if (editingController
+                                                            .text
+                                                            .isNotEmpty) {
+                                                          setState(() {
+                                                            todo_items[index] =
+                                                                editingController
+                                                                    .text;
+                                                          });
+                                                          editingController
+                                                              .clear();
                                                           Navigator.pop(
                                                             context,
                                                           );
-                                                        },
-                                                        child: Icon(
-                                                          Icons.cancel_outlined,
-                                                          color: Colors.pink,
-                                                          size: 30,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(height: 30),
-                                                  TextField(
-                                                    maxLines: 1,
-                                                    controller:
-                                                        editingController,
-                                                    textAlign: TextAlign.start,
-                                                    cursorColor: Colors.pink,
-                                                    decoration: InputDecoration(
-                                                      hintText:
-                                                          task_Controller.text,
-                                                      border: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              10,
-                                                            ),
-                                                        borderSide: BorderSide(
-                                                          color: Colors.black,
-                                                          width: 1,
+                                                        }
+                                                      },
+                                                      child: Text(
+                                                        "Update",
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.bold,
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  SizedBox(height: 30),
-                                                  ElevatedButton(
-                                                    style:
-                                                        ElevatedButton.styleFrom(
-                                                          backgroundColor:
-                                                              Colors.pink,
-                                                        ),
-                                                    onPressed: () {
-                                                      if (editingController
-                                                          .text
-                                                          .isNotEmpty) {
-                                                        setState(() {
-                                                          todo_items[index] =
-                                                              editingController
-                                                                  .text;
-                                                        });
-                                                        editingController
-                                                            .clear();
-                                                        Navigator.pop(context);
-                                                      }
-                                                    },
-                                                    child: Text(
-                                                      "Update",
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      });
-                                    },
-                                    child: Icon(
-                                      Icons.edit,
-                                      color: Colors.pink,
-                                      size: 20,
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: Colors.pink,
+                                        size: 20,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        todo_items.removeAt(index);
-                                      });
-                                    },
-                                    child: Icon(
-                                      Icons.cancel_outlined,
-                                      color: Colors.pink,
-                                      size: 20,
+                                    SizedBox(width: 10),
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          todo_items.removeAt(index);
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.cancel_outlined,
+                                        color: Colors.pink,
+                                        size: 20,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
