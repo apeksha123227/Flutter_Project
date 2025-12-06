@@ -5,6 +5,7 @@ import '../Common Functions/Common_Functions.dart';
 import 'Topics/Buttons.dart';
 
 import 'Topics/GridviewBuilder.dart';
+import 'Topics/Init_Screen.dart';
 import 'Topics/Layoutbuilder.dart';
 import 'Topics/ListBuilder.dart';
 import 'Topics/NavigatorExample.dart';
@@ -31,6 +32,7 @@ class Topics_HomeScreen extends StatelessWidget {
       'Navigator',
       'SetState',
       'GetX',
+      'Init & refresh',
     ];
 
     return Scaffold(
@@ -101,6 +103,11 @@ class Topics_HomeScreen extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => To_Do_Screen_GetX(),
                       ),
+                    );
+                  } else if (index == 9) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Dashboard_Screen()),
                     );
                   }
                 },

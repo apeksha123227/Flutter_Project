@@ -69,9 +69,7 @@ flutter:
         - asset: assets/fonts/Montserrat-Bold.ttf
 
   assets:
-    - assets/images/pavlova-diagram.png
-    - assets/images/back.png
-    - assets/images/nextpage_icon.svg
+    - assets/images/
 
 
 

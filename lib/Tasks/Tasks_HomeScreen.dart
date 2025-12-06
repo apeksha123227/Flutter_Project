@@ -4,8 +4,8 @@ import 'package:flutter_practice/Tasks/SignIn_Signup/SignInSignUp.dart';
 import 'package:flutter_practice/Tasks/To%20Do/To_Do_HomeScreen.dart';
 
 import '../Common Functions/Common_Functions.dart';
+import 'Quiz/Quiz_HomeScreen.dart';
 import 'To Do/Using SetState/To_Do_Screen_SetState.dart';
-
 
 class Tasks_HomeScreen extends StatefulWidget {
   const Tasks_HomeScreen({super.key});
@@ -20,7 +20,7 @@ class _Tasks_HomeScreenState extends State<Tasks_HomeScreen> {
     final screen_Width = MediaQuery.of(context).size.width;
     final screen_Height = MediaQuery.of(context).size.height;
 
-    final topics = ['Login', 'SignIn SignUp', 'To Do',];
+    final topics = ['Login', 'SignIn SignUp', 'To Do', 'Quiz'];
 
     return Scaffold(
       appBar: Common_Functions.GetAppBar(context, "Tasks HomeScreen"),
@@ -40,19 +40,24 @@ class _Tasks_HomeScreenState extends State<Tasks_HomeScreen> {
                       context,
                       MaterialPageRoute(builder: (context) => Loginscreen()),
                     );
-                  }
-                  else if (index == 1) {
+                  } else if (index == 1) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInSignUp()),
+                    );
+                  } else if (index == 2) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignInSignUp(),
+                        builder: (context) => To_Do_HomeScreen(),
                       ),
                     );
-                  }
-                  else if (index == 2) {
+                  } else if (index == 3) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => To_Do_HomeScreen()),
+                      MaterialPageRoute(
+                        builder: (context) => Quiz_HomeScreen(),
+                      ),
                     );
                   }
                 },
