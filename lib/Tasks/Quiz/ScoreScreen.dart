@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/Common%20Functions/AppColors.dart';
 import 'package:flutter_practice/Tasks/Quiz/QuestionScreen.dart';
 import 'package:flutter_practice/Tasks/Quiz/Quiz_HomeScreen.dart';
 import 'package:get/get.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ScoreScreen extends StatelessWidget {
   const ScoreScreen({super.key});
@@ -17,102 +21,112 @@ class ScoreScreen extends StatelessWidget {
       body: Container(
         height: screen_height,
         width: screen_width,
+
+
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(height: 120),
-              Center(
-                child: Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          height: 170,
-                          width: 170,
-                          decoration: BoxDecoration(
-                            color: Colors.lightBlue,
-                            shape: BoxShape.circle,
+              Screenshot(
+                controller:scoreController. screenshotController,
+                child: Center(
+                  child: Column(
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            height: 170,
+                            width: 170,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue,
+                              shape: BoxShape.circle,
+                            ),
                           ),
-                        ),
-                        Container(
-                          height: 150,
-                          width: 150,
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Your Score",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  //color: AppColors.textBlue,
-                                  color: Colors.white,
+                          Container(
+                            height: 150,
+                            width: 150,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Your Score",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    //color: AppColors.textBlue,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "${1}/${scoreController.questionController.totalQuestions}",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  //color: AppColors.textBlue,
-                                  color: Colors.white,
+                                Text(
+                                  "${scoreController.getScore.value}/${scoreController.questionController.totalQuestions}",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    //color: AppColors.textBlue,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        "Congratulation",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          //color: AppColors.textBlue,
+                          color: Colors.blue,
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      "Congratulation",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        //color: AppColors.textBlue,
-                        color: Colors.blue,
                       ),
-                    ),
-                    Text(
-                      "Great job, You Did It",
-                      style: TextStyle(
-                        fontSize: 20,
-                        //color: AppColors.textBlue,
-                        color: Colors.blue,
+                      Text(
+                        "Great job, You Did It",
+                        style: TextStyle(
+                          fontSize: 20,
+                          //color: AppColors.textBlue,
+                          color: Colors.blue,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Spacer(),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: (() {}),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+              InkWell(
+                onTap: (){
+                  //captureAndShare();
+                },
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: (() {}),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Text("Share", style: TextStyle(color: Colors.white)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Text("Share", style: TextStyle(color: Colors.white)),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 13),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: (() {
-                    Get.offAll(Quiz_HomeScreen());
-
+                    Get.to(Quiz_HomeScreen());
+                    scoreController.questionController.selectedAns.refresh();
                   }),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -142,4 +156,13 @@ class ScoreScreen extends StatelessWidget {
 
 class ScoreController extends GetxController {
   final questionController = Get.find<Question_Controller>();
+  RxInt getScore = 0.obs;
+  ScreenshotController screenshotController = ScreenshotController();
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getScore.value = questionController.getScore();
+  }
 }

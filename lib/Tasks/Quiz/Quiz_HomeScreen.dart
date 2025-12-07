@@ -64,15 +64,15 @@ class Quiz_HomeScreen extends StatelessWidget {
                                 child: SvgImage(
                                   item["icon"],
                                   type: PathType.assets,
-                                  height: 30,
-                                  width: 30,
+                                  height: 40,
+                                  width: 34,
                                 ),
                               ),
                             ),
                           ),
                           Text(
                             item["name"],
-                            style: TextStyle(fontSize: 15, color: Colors.black),
+                            style: TextStyle(fontSize: 13, color: Colors.black),
                           ),
                         ],
                       );

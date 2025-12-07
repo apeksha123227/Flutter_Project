@@ -93,7 +93,7 @@ class QuestionScreen extends StatelessWidget {
                       SizedBox(height: 15),
                       Obx(() {
                         return Text(
-                         "${item+1} .  ${questionController.questionList[item]["question"]}",
+                          "${item + 1} .  ${questionController.questionList[item]["question"]}",
                           style: TextStyle(
                             fontSize: 15,
                             color: Colors.black,
@@ -104,7 +104,54 @@ class QuestionScreen extends StatelessWidget {
                           overflow: TextOverflow.visible,
                         );
                       }),
+
                       SizedBox(height: 15),
+
+                      Obx(() {
+                        List options =
+                            questionController.questionList[item]["options"];
+
+                        return Column(
+                          children: List.generate(options.length, (index) {
+                            bool isSelected =
+                                questionController.selectedAns[item] == index;
+
+                            return InkWell(
+                              onTap: () {
+                                questionController.selectedOption(index);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 7,
+                                ),
+                                child: Card(
+                                  elevation: 3,
+                                  child: Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.all(15),
+                                    decoration: BoxDecoration(
+                                      color: isSelected
+                                          ? Colors.blue
+                                          : Colors.white,
+
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Text(
+                                      options[index],
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: isSelected
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        );
+                      }),
                     ],
                   ),
                 ),
@@ -137,6 +184,8 @@ class QuestionScreen extends StatelessWidget {
                       ? ElevatedButton(
                           onPressed: () {
                             questionController.totalQuestions;
+                            questionController.getScore();
+                            questionController.selectedAns.refresh();
                             Get.to(ScoreScreen());
                           },
                           style: ElevatedButton.styleFrom(
@@ -181,7 +230,6 @@ class Question_Controller extends GetxController {
   final quizController = Get.find<QuizHome_Controller>();
 
   RxString getName = "".obs;
-
   RxInt currentId = 0.obs;
 
   RxList<Map<String, dynamic>> questionList = <Map<String, dynamic>>[
@@ -234,11 +282,17 @@ class Question_Controller extends GetxController {
   ].obs;
 
   int get totalQuestions => questionList.length;
+  RxList<int> selectedAns = <int>[].obs;
 
   void next() {
     if (currentId < totalQuestions - 1) {
       currentId++;
     }
+  }
+
+  void selectedOption(int index) {
+    selectedAns[currentId.value] = index;
+    selectedAns.refresh();
   }
 
   void previous() {
@@ -247,9 +301,45 @@ class Question_Controller extends GetxController {
     }
   }
 
+  /*
+
+  bool isAnsCorrect(int questionId) {
+    RxInt selectedIndex = selectedAns[questionId].obs;
+    RxString selectedText =
+        questionList[questionId]["options"][selectedIndex].obs;
+    RxString correctAns = questionList[questionId]["answer"];
+
+    if (selectedIndex == -1) {
+      return false;
+    }
+
+    return selectedText == correctAns;
+  }
+*/
+
+  int getScore() {
+    int score = 0;
+
+    for (int i = 0; i < questionList.length; i++) {
+      int selectedIndex = selectedAns[i];
+      String selectedAnswer = questionList[i]["options"][selectedIndex];
+      String correctAnswer = questionList[i]["answer"];
+
+      if (selectedIndex == -1) continue;
+
+      if (selectedAnswer == correctAnswer) {
+        score++;
+      }
+    }
+   // selectedAns.refresh();
+
+    return score;
+  }
+
   @override
   void onInit() {
     super.onInit();
     getName.value = quizController.selectedName.value;
+    selectedAns.value = List.generate(questionList.length, (_) => -1);
   }
 }
