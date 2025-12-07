@@ -30,6 +30,7 @@ class SelectedItemController extends GetxController {
   final dashboardController = Get.find<Dashboard>();
   RxString getId = "".obs;
 
+@override
   void onInit() {
     super.onInit();
     getId.value = dashboardController.selectedId.value ;

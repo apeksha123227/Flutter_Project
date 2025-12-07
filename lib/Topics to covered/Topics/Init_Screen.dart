@@ -25,7 +25,7 @@ class Dashboard_Screen extends StatelessWidget {
                 var item = dashboardController.item[index];
                 return InkWell(
                   onTap: () {
-                    dashboardController.selectedId.value = item;
+                  //  dashboardController.selectedId.value = item;
                     Get.to(SelectedItemScreen());
                   },
                   child: ListTile(title: Text(item)),
