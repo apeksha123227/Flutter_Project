@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/Tasks/To%20Do/Using%20GetX/To_Do_Screen_GetX.dart';
+import 'package:flutter_practice/Topics%20to%20covered/Topics/Sqlite/SqliteExample.dart';
 
 import '../Common Functions/Common_Functions.dart';
 import 'Topics/Buttons.dart';
@@ -32,7 +33,7 @@ class Topics_HomeScreen extends StatelessWidget {
       'Navigator',
       'SetState',
       'GetX',
-      'Init & refresh',
+      'Init & refresh','Sqlite',
     ];
 
     return Scaffold(
@@ -108,6 +109,11 @@ class Topics_HomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Dashboard_Screen()),
+                    );
+                  }else if (index == 10) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SqliteExample()),
                     );
                   }
                 },

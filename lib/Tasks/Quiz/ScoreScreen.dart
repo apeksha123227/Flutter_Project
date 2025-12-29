@@ -126,7 +126,7 @@ class ScoreScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: (() {
                     Get.to(Quiz_HomeScreen());
-                    scoreController.questionController.selectedAns.refresh();
+                    scoreController.questionController.selectedAns.clear();
                   }),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,

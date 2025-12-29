@@ -26,11 +26,8 @@ class Quiz_HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgImage(
-                'assets/images/quizImg.svg',
-                type: PathType.assets,
-                fit: BoxFit.cover,
-              ),
+
+              Image.asset("assets/images/quizimg.png",fit: BoxFit.contain,),
               SizedBox(height: 10),
               Text(
                 "Categories",
@@ -49,16 +46,17 @@ class Quiz_HomeScreen extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               quizController.selectedName.value = item["name"];
-                             // quizController.selectedIcon.value = item["icon"];
+                              quizController.selectedName.refresh();
                               Get.to(QuestionScreen());
                             },
                             child: Card(
-                             // color: AppColors.blue,
-                              color: Colors.blue,
+                             //color: AppColors.blue,
+                              color: Colors.white.withOpacity(0.8),
                               elevation: 1,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
+
                               child: Padding(
                                 padding: const EdgeInsets.all(10),
                                 child: SvgImage(

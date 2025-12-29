@@ -100,7 +100,7 @@ class QuestionScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                           softWrap: true,
-                          maxLines: 5, // or null for unlimited
+                          maxLines: null,
                           overflow: TextOverflow.visible,
                         );
                       }),
@@ -291,8 +291,14 @@ class Question_Controller extends GetxController {
   }
 
   void selectedOption(int index) {
-    selectedAns[currentId.value] = index;
-    selectedAns.refresh();
+   /* selectedAns[currentId.value] = index;
+    selectedAns.refresh();*/
+
+    if (currentId.value < selectedAns.length) {
+      selectedAns[currentId.value] = index;
+      selectedAns.refresh();
+    }
+
   }
 
   void previous() {
@@ -332,13 +338,17 @@ class Question_Controller extends GetxController {
       }
     }
    // selectedAns.refresh();
-
     return score;
   }
 
   @override
   void onInit() {
     super.onInit();
+
+    ever(quizController.selectedName, (value) {
+      getName.value = value;
+    });
+
     getName.value = quizController.selectedName.value;
     selectedAns.value = List.generate(questionList.length, (_) => -1);
   }
