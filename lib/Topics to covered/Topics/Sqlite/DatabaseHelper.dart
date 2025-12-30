@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter_practice/Topics%20to%20covered/Topics/Sqlite/Model.dart';
@@ -29,6 +30,8 @@ class DatabaseHelper {
   Future<Database> init() async {
     if (database != null) return database!;
     final data = await getDatabasesPath();
+    // final dir = Directory("/storage/emulated/0/Download");
+    print("path => ${data}");
     String path = join(data, 'testUserDetails.db');
     database = await openDatabase(
       path,
@@ -43,8 +46,8 @@ class DatabaseHelper {
 
   //insert
   Future<int> insert(Model model) async {
-    final db = await database;
-    final data = await db!.insert(tableName, model.tomap());
+    final db = await init();
+    final data = await db.insert(tableName, model.tomap());
 
     return data;
   }
@@ -52,16 +55,16 @@ class DatabaseHelper {
   //get data
 
   Future<List<Model>> getData() async {
-    final db = await database;
-    final data = await db!.query(tableName);
+    final db = await init();
+    final data = await db.query(tableName);
     return data.map((e) => Model.fromMap(e)).toList();
   }
 
   //delete
 
-  static Future<int> delete(int id) async {
-    final db = await database;
-    final data = await db!.delete(tableName, where: 'id =?', whereArgs: [id]);
+  Future<int> delete(int id) async {
+    final db = await init();
+    final data = await db.delete(tableName, where: 'id =?', whereArgs: [id]);
     return data;
   }
 }

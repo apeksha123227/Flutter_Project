@@ -31,6 +31,12 @@ class SqliteExample extends StatelessWidget {
                       return ListTile(
                         title: Text(user.name ?? ""),
                         subtitle: Text("Age: ${user.age.toString()}"),
+                        trailing: InkWell(
+                          onTap: () {
+                            sqliteExample_Controller.deletedata(user.id!);
+                          },
+                          child: Icon(Icons.cancel),
+                        ),
                       );
                     },
                   ),
@@ -52,6 +58,7 @@ class SqliteExample extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           ),
+
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

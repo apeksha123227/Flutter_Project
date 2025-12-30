@@ -37,4 +37,10 @@ class SqliteExample_Controller extends GetxController {
 
     Get.snackbar("Success", "User added to database");
   }
+
+  Future<int?> deletedata(int id) async {
+    await DatabaseHelper.instance.delete(id);
+    fetchUsers();
+    Get.snackbar("Deleted", "User removed");
+  }
 }

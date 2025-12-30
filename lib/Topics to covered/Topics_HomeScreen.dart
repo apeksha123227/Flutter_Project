@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/Tasks/To%20Do/Using%20GetX/To_Do_Screen_GetX.dart';
+import 'package:flutter_practice/Topics%20to%20covered/Topics/Payment/Payment.dart';
 import 'package:flutter_practice/Topics%20to%20covered/Topics/Sqlite/SqliteExample.dart';
 
 import '../Common Functions/Common_Functions.dart';
@@ -33,7 +34,9 @@ class Topics_HomeScreen extends StatelessWidget {
       'Navigator',
       'SetState',
       'GetX',
-      'Init & refresh','Sqlite',
+      'Init & refresh',
+      'Sqlite',
+      'Payment',
     ];
 
     return Scaffold(
@@ -108,12 +111,19 @@ class Topics_HomeScreen extends StatelessWidget {
                   } else if (index == 9) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Dashboard_Screen()),
+                      MaterialPageRoute(
+                        builder: (context) => Dashboard_Screen(),
+                      ),
                     );
-                  }else if (index == 10) {
+                  } else if (index == 10) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SqliteExample()),
+                    );
+                  } else if (index == 11) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Payment()),
                     );
                   }
                 },
